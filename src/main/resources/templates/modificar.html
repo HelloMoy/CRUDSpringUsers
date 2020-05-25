@@ -8,42 +8,43 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </head>
     <body class="container">
-        <h1>Datos del usuario</h1>
+        <header th:replace="layout/plantilla :: header"></header>
+        <h2>Datos del usuario</h2>
         <h3><a th:href="@{/}">Regresar</a></h3>
 
         <br/>
-        
+
         <div class="row">
             <div class="col-sm-4">
                 <form th:action="@{/guardar}" method="post" th:object="${persona}">
                     <input type="hidden" name="idPersona" th:field="*{idPersona}">
-                    <div class="form-group">
-                        <label for="nombre">Nombre: </label>
-                        <input class="form-control" type="text" name="nombre" th:field="*{nombre}">
-                            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>
-                    </div>
-                    
-                    <div class="form-group">
-                         <label for="apellido">Apellido: </label>
-                        <input class="form-control" type="text" name="apellido" th:field="*{apellido}">
-                            <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{nombre}">Error Apellido</span>
-                    </div>
-                    
-                    <div class="form-group">
-                         <label for="email">Email: </label>
-                        <input class="form-control" type="email" name="email" th:field="*{email}">
-                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{nombre}">Error Email</span>
-                    </div>
-                    
-                    <div class="form-group">
-                         <label for="telefono">Telefono: </label>
-                        <input class="form-control" type="tel" name="telefono" th:field="*{telefono}">
-                    </div>
-                   
-                    <input type="submit" name="guardar" value="Guardar"/>
+                        <div class="form-group">
+                            <label for="nombre">Nombre: </label>
+                            <input class="form-control" type="text" name="nombre" th:field="*{nombre}">
+                                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellido">Apellido: </label>
+                            <input class="form-control" type="text" name="apellido" th:field="*{apellido}">
+                                <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{nombre}">Error Apellido</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email: </label>
+                            <input class="form-control" type="email" name="email" th:field="*{email}">
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{nombre}">Error Email</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Telefono: </label>
+                            <input class="form-control" type="tel" name="telefono" th:field="*{telefono}">
+                        </div>
+
+                        <input type="submit" name="guardar" value="Guardar"/>
                 </form>
             </div>
         </div>
-
+        <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>
