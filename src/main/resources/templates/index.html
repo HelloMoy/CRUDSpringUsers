@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
     <head>
         <title>Inicio</title>
         <meta charset="UTF-8">
@@ -9,7 +12,8 @@
                     </head>
                     <body class="container">
                         <header th:replace="layout/plantilla :: header"></header>
-                        <h2><a th:href="@{/agregar}">[[#{persona.crear}]]</a></h2>
+                        
+                        <h2 sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/agregar}">[[#{persona.crear}]]</a></h2>
 
                         <div th:if="${personas != null and !personas.empty}">
                             <table class="table">
@@ -20,8 +24,8 @@
                                         <th scope="col">[[#{persona.apellido}]]</th>
                                         <th scope="col">[[#{persona.email}]]</th>
                                         <th scope="col">[[#{persona.telefono}]]</th>
-                                        <th scope="col">[[#{accion.editar}]]</th>
-                                        <th scope="col">[[#{accion.eliminar}]]</th>
+                                        <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[#{accion.editar}]]</th>
+                                        <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[#{accion.eliminar}]]</th>
                                     </tr>
                                 </thead>
 
@@ -31,8 +35,8 @@
                                     <td th:text = "${persona.apellido}">Apellido</td>
                                     <td th:text = "${persona.email}">Email</td>
                                     <td th:text = "${persona.telefono}">Telefono</td>
-                                    <td> <a th:href = "@{/editar/} + ${persona.idPersona}" th:text="#{accion.editar}"></a></td>
-                                    <td> <a th:href = "@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{accion.eliminar}"></a></td>
+                                    <td> <a sec:authorize="hasRole('ROLE_ADMIN')" th:href = "@{/editar/} + ${persona.idPersona}" th:text="#{accion.editar}"></a></td>
+                                    <td> <a sec:authorize="hasRole('ROLE_ADMIN')" th:href = "@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{accion.eliminar}"></a></td>
                                 </tr>
                             </table>
                         </div>
