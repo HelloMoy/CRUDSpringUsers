@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
+    <head>
+        <title>Editar Cliente</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body>
+
+                    <section th:fragment="editarCliente">
+                        <form class="was-validated" th:action="@{/guardar}" method="post" th:object="${persona}">
+                            <input type="hidden" name="idPersona" th:field="*{idPersona}">
+                                <section th:replace="layout/botonesEditar :: botonesEditar"></section>
+                                <div id="details">
+                                    <div class="container"> 
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>[[#{accion.editar}]]</h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                            <label for="nombre">[[#{persona.nombre}]]: </label>
+                                                            <input type="text" name="nombre" required="true" th:field="*{nombre}" class="form-control">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="apellido">[[#{persona.apellido}]]: </label>
+                                                            <input type="text" name="apellido" required="true" th:field="*{apellido}" class="form-control">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="email">[[#{persona.email}]]: </label>
+                                                            <input type="email" name="email" required="true" th:field="*{email}" class="form-control">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="telefono">[[#{persona.telefono}]]: </label>
+                                                            <input type="tel" name="telefono" th:field="*{telefono}" class="form-control">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="saldo">[[#{persona.saldo}]]: </label>
+                                                            <input type="number" step="any" name="saldo" required="true" th:field="*{saldo}" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </section>
+
+                </body>
+                </html>
+
